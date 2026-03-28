@@ -1,33 +1,33 @@
-import java.io.*;
+public void findLowestBid(int tenderId) {
+    try {
+        BufferedReader br = new BufferedReader(new FileReader("bids.txt"));
+        String line;
 
-class BidService {
+        double min = Double.MAX_VALUE;
+        String winner = "";
 
-    public void placeBid(Bid b) {
-        try {
-            FileWriter fw = new FileWriter("bids.txt", true);
-            fw.write(b.tenderId + "," + b.vendorName + "," + b.amount + "\n");
-            fw.close();
-            System.out.println("Bid placed successfully!");
-        } catch (Exception e) {
-            System.out.println("Error placing bid");
-        }
-    }
+        while ((line = br.readLine()) != null) {
+            String[] b = line.split(",");
 
-    public void viewBids() {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("bids.txt"));
-            String line;
+            if (Integer.parseInt(b[0]) == tenderId) {
+                double amt = Double.parseDouble(b[2]);
 
-            System.out.println("\n--- Bids ---");
-
-            while ((line = br.readLine()) != null) {
-                String[] b = line.split(",");
-                System.out.println("Tender ID: " + b[0] + " | Vendor: " + b[1] + " | Amount: " + b[2]);
+                if (amt < min) {
+                    min = amt;
+                    winner = b[1];
+                }
             }
-
-            br.close();
-        } catch (Exception e) {
-            System.out.println("No bids found");
         }
+
+        br.close();
+
+        if (!winner.equals("")) {
+            System.out.println("Winner: " + winner + " with bid: " + min);
+        } else {
+            System.out.println("No bids found for this tender.");
+        }
+
+    } catch (Exception e) {
+        System.out.println("Error finding winner");
     }
 }
