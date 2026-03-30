@@ -13,9 +13,10 @@ This is a console-based Java application that simulates a tender management syst
 ## How to Run
 
 1. Compile:
+   cd src
    javac *.java
 
-2. Run:
+3. Run:
    java Main
 
 ## Technologies Used
