@@ -12,14 +12,21 @@ This is a console-based Java application that simulates a tender management syst
 
 ## How to Run
 
-1. Compile:
+1. Go to src folder:
    cd src
-   
+
+2. Compile:
    javac *.java
 
-2. Run:
+3. Run:
    java Main
 
+## Project Structure
+
+- src/ → source code
+- test-data/ → sample data
+- screenshots/ → output images
+  
 ## Technologies Used
 - Core Java
 - OOP Concepts
