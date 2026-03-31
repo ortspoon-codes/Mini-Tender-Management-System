@@ -1,3 +1,0 @@
-1,VendorA,5000
-1,VendorB,4500
-2,VendorC,7000
