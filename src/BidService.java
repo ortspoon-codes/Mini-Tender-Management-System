@@ -8,26 +8,31 @@ class BidService {
 
             double min = Double.MAX_VALUE;
             String winner = "";
+            boolean found = false;
 
             while ((line = br.readLine()) != null) {
                 String[] b = line.split(",");
 
-                if (Integer.parseInt(b[0]) == tenderId) {
-                    double amt = Double.parseDouble(b[2]);
+                int id = Integer.parseInt(b[0].trim());
+                String name = b[1].trim();
+                double amt = Double.parseDouble(b[2].trim());
+
+                if (id == tenderId) {
+                    found = true;
 
                     if (amt < min) {
                         min = amt;
-                        winner = b[1];
+                        winner = name;
                     }
                 }
             }
 
             br.close();
 
-            if (!winner.equals("")) {
-                System.out.println("Winner: " + winner + " with bid: " + min);
-            } else {
+            if (!found) {
                 System.out.println("No bids found for this tender.");
+            } else {
+                System.out.println("Winner: " + winner + " with lowest bid: " + min);
             }
 
         } catch (Exception e) {
